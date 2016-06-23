@@ -51,7 +51,31 @@ foreach (int item, ved) {
 
 
 
+QString r;
 
+QSqlQuery queryQ;
+QString e = QString("SELECT \"ksns\" FROM \"ResultTest\" WHERE \"StudentId\" = '%1' AND \"Hand\"= '%2'").arg(qq).arg(1);
+queryQ.exec(e);
+QString vv;
+while (queryQ.next()) {
+    vv=queryQ.value(0).toString();
+}
+
+if (vv.toDouble()<-17.3){
+    r= "Слабая нервная система";
+}
+if (-17.3<vv.toDouble()<=-6.1){
+    r= "Средне-слабая нервная система";
+}
+if (-6.1<vv.toDouble()<=6.0){
+    r= "Средняя нервная система";
+}
+if (6.0<vv.toDouble()<=17.2){
+r= "Средне-слабая нервная система";
+}
+if (vv.toDouble()>=17.3){
+r= "Сильная нервная система";
+}
 
 
       ui->label_8->setText(QString("r1 = %1").arg(b1));
@@ -63,7 +87,7 @@ foreach (int item, ved) {
       ui->label_17->setText(QString("Max = %1").arg(maxV));
       ui->label_18->setText(QString("Min = %1").arg(minV));
       ui->label_19->setText(QString("КСНС = %1").arg(ksnss));
-      ui->label_38->setText(QString("Коэффициент функциональной асимметрии: %1").arg(kfa));
+      ui->label_38->setText(QString("Коэффициент функциональной асимметрии: %1 \r\n'%2").arg(kfa).arg(r));
 
 
       QSqlQuery query;
